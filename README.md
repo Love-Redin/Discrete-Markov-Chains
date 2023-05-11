@@ -1,8 +1,14 @@
 # discrete_markov: a Python library providing functions for discrete Markov Chains
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Markovkate_01.svg/1200px-Markovkate_01.svg.png" width="300" height="300">
+
 Package discrete_markov provides functions for working with discrete Markov chains,
 including calculating transition matrices, simulating Markov chains, and computing
 stationary distributions.
+
+Requirements: numpy, pandas, itertools
+
+The functions offered are described below.
 
 ## Transition Matrix
 The transition_matrix function computes the transition matrix from a given array of
