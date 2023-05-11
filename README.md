@@ -1,2 +1,5 @@
-# ovn7
-Övning 7
+# discrete-markov: a Python library providing functions for discrete Markov Chains
+
+
+
+
