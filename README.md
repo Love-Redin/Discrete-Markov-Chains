@@ -1,4 +1,4 @@
-# discrete_markov: a Python library providing functions for discrete Markov Chains
+# discrete_markov: a Python library providing functions for working with discrete Markov Chains
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Markovkate_01.svg/1200px-Markovkate_01.svg.png" width="300" height="300">
 
