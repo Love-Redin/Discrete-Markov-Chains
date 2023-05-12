@@ -2,7 +2,7 @@
 
 This example assumes familiarity with pandas.
 
-Say that we have a pandas dataframe of daily rain data, looking like this:
+Say that we have a pandas dataframe of time series daily rain data from SMHI, looking like this:
 
 ```
       Representativt dygn  Nederbördsmängd
