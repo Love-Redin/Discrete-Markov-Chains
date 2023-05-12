@@ -70,25 +70,25 @@ High    0.260274  0.490411  0.175342  0.073973
 If we do the same for degree two, it looks like this:
 
 ```
-transition_matrix(rain_amount, 2).reindex(["None", "Low", "Medium", "High"], axis=1)
-Out[131]: 
+transition_matrix(rain_amount, 2).reindex(["None", "Low", "Medium", "High"], axis=1).reindex(_get_possible_previous_states(["None", "Low", "Medium", "High"], 2), axis=0)
+Out[138]: 
                    None       Low    Medium      High
-High-High      0.370370  0.444444  0.111111  0.074074
-High-Low       0.446927  0.396648  0.134078  0.022346
-High-Medium    0.312500  0.578125  0.062500  0.046875
-High-None      0.652632  0.273684  0.052632  0.021053
-Low-High       0.304348  0.478261  0.155280  0.062112
-Low-Low        0.376885  0.508153  0.101916  0.013045
-Low-Medium     0.286814  0.559192  0.125120  0.028874
-Low-None       0.603839  0.315881  0.071553  0.008726
-Medium-High    0.171429  0.500000  0.242857  0.085714
-Medium-Low     0.392256  0.462963  0.126263  0.018519
-Medium-Medium  0.257053  0.542320  0.166144  0.034483
-Medium-None    0.556426  0.324451  0.103448  0.015674
-None-High      0.224299  0.514019  0.177570  0.084112
+None-None      0.725718  0.226442  0.042041  0.005799
 None-Low       0.420395  0.466181  0.094953  0.018470
 None-Medium    0.300126  0.500631  0.166456  0.032787
-None-None      0.725718  0.226442  0.042041  0.005799
+None-High      0.224299  0.514019  0.177570  0.084112
+Low-None       0.603839  0.315881  0.071553  0.008726
+Low-Low        0.376885  0.508153  0.101916  0.013045
+Low-Medium     0.286814  0.559192  0.125120  0.028874
+Low-High       0.304348  0.478261  0.155280  0.062112
+Medium-None    0.556426  0.324451  0.103448  0.015674
+Medium-Low     0.392256  0.462963  0.126263  0.018519
+Medium-Medium  0.257053  0.542320  0.166144  0.034483
+Medium-High    0.171429  0.500000  0.242857  0.085714
+High-None      0.652632  0.273684  0.052632  0.021053
+High-Low       0.446927  0.396648  0.134078  0.022346
+High-Medium    0.312500  0.578125  0.062500  0.046875
+High-High      0.370370  0.444444  0.111111  0.074074
 ```
 
 From these transition matrices, we can estimate the probabilites of a given amount of rain tomorrow, given either the last day or the past two days.
