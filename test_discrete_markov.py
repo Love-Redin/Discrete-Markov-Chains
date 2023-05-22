@@ -148,6 +148,7 @@ def test_visualize_transition_matrix():
     
     print("All test_visualize_transition_matrix tests passed")
 
+
 def main():
     """
     Runs tests for transition_matrix, simulate_markov_chain and
