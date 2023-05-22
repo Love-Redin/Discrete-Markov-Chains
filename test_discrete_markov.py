@@ -118,6 +118,36 @@ def test_compute_stationary_distribution():
     print("All compute_stationary_distribution tests passed")
     
     
+def test_visualize_transition_matrix():
+    # Create a test transition matrix DataFrame
+    transition_data = np.array([[0.2, 0.3, 0.5], [0.4, 0.1, 0.5], [0.3, 0.3, 0.4]])
+    transition_df = pd.DataFrame(transition_data, columns=['A', 'B', 'C'], index=['X', 'Y', 'Z'])
+    
+    # Call the function
+    fig, ax = visualize_transition_matrix(transition_df)
+    
+    # Assert that the returned objects are Figure and Axes instances
+    assert isinstance(fig, plt.Figure)
+    assert isinstance(ax, plt.Axes)
+
+   # Create an empty DataFrame
+    empty_df = pd.DataFrame()
+
+    # Call the function with an empty DataFrame and check if it raises a ValueError
+    try:
+        visualize_transition_matrix(empty_df)
+    except ValueError:
+        # ValueError is expected, so the test passes
+        pass
+    else:
+        # If no exception is raised, the test fails
+        raise AssertionError("Expected ValueError not raised for empty DataFrame")
+    
+    # Close the plot to avoid interference with potential subsequent tests or code
+    plt.close(fig)
+    
+    print("All test_visualize_transition_matrix tests passed")
+
 def main():
     """
     Runs tests for transition_matrix, simulate_markov_chain and
@@ -127,6 +157,8 @@ def main():
     test_transition_matrix()
     test_simulate_markov_chain()
     test_compute_stationary_distribution()
+    test_visualize_transition_matrix()
+    print("All tests passed")
 
 
 if __name__ == '__main__':

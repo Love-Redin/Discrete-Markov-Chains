@@ -32,11 +32,23 @@ Markov chain. Note that convergence may not occur for some Markov chains, such a
 absorbing, periodic, or non-ergodic chains.
 
 
+Visualize Transition Matrix
+The visualize_transition_matrix function visualizes the Markov transition matrix 
+using a horizontal bar chart. It takes a Pandas DataFrame representing the transition
+matrix as input, where each column and row label represents a state. The values in 
+the matrix represent the probabilities of transitioning from the current state to the
+next state. The resulting plot provides an intuitive visualization of the transition
+probabilities between states.
+
+
 Limitations:
-The transition_matrix function is recommended for use for degrees up to approximately
-five, as the number of rows and time complexity increase exponentially with higher 
-degrees. The compute_stationary_distribution function requires a square transition 
-matrix (n x n), and the rows and columns must have consistent naming.
+- The transition_matrix function is recommended for use for degrees up to approximately five,
+as the number of rows and time complexity increase exponentially with higher degrees. 
+- The compute_stationary_distribution function requires a square transition matrix (n x n),
+and the rows and columns must have consistent naming. 
+- The visualize_transition_matrix function is suitable for Markov transition matrices with
+a reasonable number of states. For large matrices, the plot may become crowded and less 
+interpretable.
 
 
 It is recommended to carefully review the documentation and ensure proper usage of
@@ -46,6 +58,7 @@ discrete Markov chains.
 import pandas as pd
 import numpy as np
 import itertools
+import matplotlib.pyplot as plt
 
 
 def transition_matrix(array, degree=1):
@@ -115,7 +128,7 @@ def _get_possible_previous_states(unique_states, degree):
     previous_states = ['A-A', 'A-B', 'A-C', 'B-A', 'B-B', 'B-C', 'C-A', 'C-B', 'C-C']
     """
     previous_states = []
-    combinations = list(itertools.product(sorted(unique_states), repeat=degree))    
+    combinations = list(itertools.product(unique_states, repeat=degree))    
     previous_states = ['-'.join(map(str, combination)) for combination in combinations]
     
     return previous_states
@@ -180,4 +193,48 @@ def compute_stationary_distribution(transition_df):
         terminal_matrix = terminal_matrix.dot(terminal_matrix)
         terminal_matrix = terminal_matrix.apply(normalize, axis=1)
             
-    return terminal_matrix    
+    return terminal_matrix        
+
+
+def visualize_transition_matrix(transition_df):
+    """
+    Visualizes the Markov transition matrix using a horizontal bar chart.
+
+    Parameters:
+    - transition_df (pandas DataFrame): DataFrame representing the Markov transition matrix,
+      where each column and row label represents a state.
+
+    Returns:
+    - fig, ax (matplotlib Figure and Axes): Figure and Axes objects of the generated plot.
+
+    The transition_df should be a transition matrix where each row and column corresponds to a state.
+    The values in the matrix represent the probabilities of transitioning from the current state to 
+    the next state.
+    The sum of probabilities in each row should be one.
+
+    Note: This visualization is suitable for Markov transition matrices with a reasonable number of states.
+    For large matrices, the plot may become crowded and less interpretable.
+    """
+    previous_states = transition_df.index
+    current_states = transition_df.columns
+    if not (len(previous_states) >= len(current_states) > 0):
+        raise ValueError("Incorrect shape of transition matrix.")
+    transition_data = np.array(transition_df.values)
+    data_cumulative = transition_data.cumsum(axis=1)
+    category_colors = plt.get_cmap('RdYlGn_r')(np.linspace(0.15, 0.85, transition_data.shape[1]))
+
+    fig, ax = plt.subplots(figsize=(9.2, 5))
+    ax.invert_yaxis()
+    ax.xaxis.set_visible(False)
+    ax.set_xlim(0, np.sum(transition_data, axis=1).max())
+
+    for i, (colname, color) in enumerate(zip(current_states, category_colors)):
+        transition_widths = transition_data[:, i]
+        transition_starts = data_cumulative[:, i] - transition_widths
+        ax.barh(previous_states, transition_widths, left=transition_starts, height=0.9,
+                label=colname, color=color)
+
+    ax.legend(ncol=len(current_states), bbox_to_anchor=(0, 1),
+              loc='lower left', fontsize='small')
+    plt.show()
+    return fig, ax
