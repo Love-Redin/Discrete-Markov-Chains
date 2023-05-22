@@ -91,5 +91,19 @@ High-Medium    0.312500  0.578125  0.062500  0.046875
 High-High      0.370370  0.444444  0.111111  0.074074
 ```
 
-From these transition matrices, we can estimate the probabilites of a given amount of rain tomorrow, given either the last day or the past two days.
+From these transition matrices, we can estimate the probabilites of a given amount of rain tomorrow, given either the last day or the past two days. We can also visualize these transition matrices using the visualize_transition_matrix function, with the following line of code:
+
+```
+visualize_transition_matrix(transition_df)
+```
+
+For the two matrices respectively, this results in the following plots:
+
+![Plot grad 1](res/degree_1.png)
+
+**Figure 1:** Visualization of the transition matrix of degree one from before.
+
+![Plot grad 2](res/degree_2.png)
+
+**Figure 2:** Visualization of the transition matrix of degree two from before.
 
