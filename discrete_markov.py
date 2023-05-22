@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # grudat23 projekt Love Redin
 """
-Package discrete_markov provides functions for working with discrete Markov chains,
+Package discrete_markov v1.0 provides functions for working with discrete Markov chains,
 including calculating transition matrices, simulating Markov chains, and computing
 stationary distributions.
 
