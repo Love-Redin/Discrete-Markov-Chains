@@ -6,7 +6,7 @@ Package discrete_markov provides functions for working with discrete Markov chai
 including calculating transition matrices, simulating Markov chains, and computing
 stationary distributions.
 
-Requirements: numpy, pandas, itertools
+Requirements: numpy, pandas, itertools, matplotlib
 
 The functions offered are described below.
 
