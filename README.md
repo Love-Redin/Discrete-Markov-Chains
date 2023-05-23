@@ -35,6 +35,8 @@ absorbing, periodic, or non-ergodic chains.
 ## Visualize Transition Matrix
 The visualize_transition_matrix function visualizes the Markov transition matrix using a horizontal bar chart. It takes a Pandas DataFrame representing the transition matrix as input, where each column and row label represents a state. The values in the matrix represent the probabilities of transitioning from the current state to the next state. The resulting plot provides an intuitive visualization of the transition probabilities between states.
 
+![Plot grad 1](res/degree_1.png)
+
 ## Limitations
 The transition_matrix function is recommended for use for degrees up to approximately
 five, as the number of rows and time complexity increase exponentially with higher 
