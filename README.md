@@ -1,6 +1,9 @@
+HEAD
 # discrete_markov v1.0: a Python library providing functions for working with discrete Markov Chains
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Markovkate_01.svg/1200px-Markovkate_01.svg.png" width="300" height="300">
+
+Final project from Spring 2023 in DD1327 Fundamentals of Computer Science at KTH Royal Institute of Technology.
 
 Package discrete_markov provides functions for working with discrete Markov chains,
 including calculating transition matrices, simulating Markov chains, and computing
